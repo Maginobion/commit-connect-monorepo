@@ -1,4 +1,4 @@
-import { Commit, CommitAuthor } from 'src/domain/entities/commit.entity';
+import { Commit } from 'src/domain/entities/commit.entity';
 
 export class RepoDTO {
     sha: string;

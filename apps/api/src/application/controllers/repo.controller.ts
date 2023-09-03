@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Put } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { RepoService } from '../../domain/services/repo.service';
 import { RepositorySearchParams } from 'src/shared/interfaces/repository-search-params.interface';
 import { RepoDTO } from '../dtos/repo.dto';
@@ -7,8 +7,8 @@ import { RepoDTO } from '../dtos/repo.dto';
 export class RepoController {
     constructor(private repoService: RepoService) {}
 
-    @Get()
-    async getRepoCommits(params: RepositorySearchParams): Promise<RepoDTO[]> {
+    @Post()
+    async getRepoCommits(@Body() params: RepositorySearchParams): Promise<RepoDTO[]> {
         const repoCommits = await this.repoService.getRepoCommits(params);
         const dtos: RepoDTO[] = repoCommits.map((commit) => new RepoDTO(commit));
 

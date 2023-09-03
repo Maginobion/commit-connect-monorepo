@@ -43,17 +43,19 @@ interface CommitUser {
     site_admin: boolean;
 }
 
-interface CommitFile {
+type CommitStatus = 'added' | 'removed' | 'modified' | 'renamed' | 'copied' | 'changed' | 'unchanged';
+
+export interface CommitFile {
     sha: string;
     filename: string;
-    status: string;
+    status: CommitStatus;
     additions: number;
     deletions: number;
     changes: number;
     blob_url: string;
     raw_url: string;
     contents_url: string;
-    patch: string;
+    patch?: string;
 }
 
 interface BaseCommit {
@@ -77,12 +79,12 @@ interface BaseCommit {
 }
 
 export interface DetailedCommit extends BaseCommit {
-    stats: {
-        total: number;
-        additions: number;
-        deletions: number;
+    stats?: {
+        total?: number;
+        additions?: number;
+        deletions?: number;
     };
-    files: CommitFile[];
+    files?: CommitFile[];
 }
 
 export interface Commit extends BaseCommit {}
