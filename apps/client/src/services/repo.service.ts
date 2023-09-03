@@ -1,9 +1,9 @@
 import { GITHUB_REPO_OWNER, GITHUB_REPO_NAME } from '@/config/app';
-import { RepoCommitAdapter } from '../adapters/repo-commit.adapter';
+import { AdaptedRepoCommit, RepoCommitAdapter } from '../adapters/repo-commit.adapter';
 import { RepoCommit } from '../models/repo-commit.model';
 
 const RepoService = {
-    async getCurrentRepoCommits() {
+    async getCurrentRepoCommits(): Promise<AdaptedRepoCommit[]> {
         const body = {
             owner: GITHUB_REPO_OWNER,
             repo: GITHUB_REPO_NAME,
